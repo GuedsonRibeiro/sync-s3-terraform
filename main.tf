@@ -59,7 +59,7 @@ resource "aws_s3_bucket_object" "index" {
 
 variable "img" {
   type = string
-  default = "multiple-s3-files"
+  default = "img"
   
 }
 resource "aws_s3_bucket_object" "base_folder" {
@@ -76,8 +76,7 @@ resource "aws_s3_bucket_object" "S3Objects-inside-dir" {
   acl = "public-read"
   source = "C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img\\${each.value}"
 
-  etag = filemd5("C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img\\${each.value}"
-)
+  etag = filemd5("C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img\\${each.value}")
 }
 
 
