@@ -59,7 +59,7 @@ resource "aws_s3_bucket_object" "index" {
 resource "aws_s3_bucket_object" "img" {
   bucket = aws_s3_bucket.s3-guedson.id
   key = "img"
-  source = "/img"
+  source = "img"
   acl = "public-read"
   content_type = "application/x-directory"
 }
