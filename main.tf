@@ -59,16 +59,28 @@ resource "aws_s3_bucket_object" "index" {
 
 variable "img" {
   type = string
-  default = "img"
+  default = "multiple-s3-files"
   
 }
-resource "aws_s3_bucket_object" "img" {
+resource "aws_s3_bucket_object" "base_folder" {
   bucket = aws_s3_bucket.s3-guedson.id
   key = "${var.img}/"
-  source = "img"
   acl = "public-read"
   content_type = "application/x-directory"
 }
+
+resource "aws_s3_bucket_object" "S3Objects-inside-dir" {
+  bucket = aws_s3_bucket.s3-guedson.id
+  for_each = fileset("C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img", "*")
+  key = "${var.img}/${each.value}"
+  acl = "public-read"
+  source = "C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img\\${each.value}"
+
+  etag = filemd5("C:\\Users\\DELL\\OneDrive\\Área de Trabalho\\Portifólio\\sync-s3-terraform\\img\\${each.value}"
+)
+}
+
+
 
 #S3 POLICY
 resource "aws_s3_bucket_policy" "s3-policy-alb" {
