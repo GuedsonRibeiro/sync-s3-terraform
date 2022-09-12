@@ -57,11 +57,9 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 resource "aws_s3_bucket_object" "img" {
-  for_each = fileset("img/", "*")
   bucket = aws_s3_bucket.s3-guedson.id
-  key = each.value
-  source = "img/${each.value}"
-  etag = filemd5("img/${each.value}")
+  key = "img"
+  source = "/img/img"
   acl = "public-read"
 }
 
