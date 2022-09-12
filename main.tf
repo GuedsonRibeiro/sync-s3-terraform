@@ -56,9 +56,15 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
 }
 
+
+variable "img" {
+  type = "string"
+  default = "img"
+  
+}
 resource "aws_s3_bucket_object" "img" {
   bucket = aws_s3_bucket.s3-guedson.id
-  key = "img"
+  key = "${var.img}/"
   source = "img"
   acl = "public-read"
   content_type = "application/x-directory"
