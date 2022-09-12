@@ -57,11 +57,12 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 resource "aws_s3_bucket_object" "img" {
-  key = "img"
+  for_each = fileset("img/", "*")
   bucket = aws_s3_bucket.s3-guedson.id
-  source = "img"
+  key = each.value
+  source = "img/${each.value}"
+  etag = filemd5("img/${each.value}")
   acl = "public-read"
-  content_type = "img"
 }
 
 #S3 POLICY
