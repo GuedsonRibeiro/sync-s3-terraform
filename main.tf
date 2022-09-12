@@ -61,6 +61,7 @@ resource "aws_s3_bucket_object" "img" {
   key = "img"
   source = "/img"
   acl = "public-read"
+  content_type = "application/x-directory"
 }
 
 #S3 POLICY
