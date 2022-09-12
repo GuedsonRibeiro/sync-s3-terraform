@@ -58,10 +58,9 @@ resource "aws_s3_bucket_object" "index" {
 
 
 variable "img" {
-  type = "string"
   default = "img"
-  
 }
+
 resource "aws_s3_bucket_object" "img" {
   bucket = aws_s3_bucket.s3-guedson.id
   key = "${var.img}/"
