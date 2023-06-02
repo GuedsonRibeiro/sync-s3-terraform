@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Doações</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Doações</h1>
+        <div id="mensagem"></div>
+        <form id="registro-doacao">
+            <div class="form-group">
+                <label for="id_doador">ID do Doador:</label>
+                <input type="text" id="id_doador" name="id_doador" required>
+            </div>
+            <div class="form-group">
+                <label for="id_organizacao">ID da Organização:</label>
+                <input type="text" id="id_organizacao" name="id_organizacao" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo_alimento">Tipo de Alimento:</label>
+                <input type="text" id="tipo_alimento" name="tipo_alimento" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" required>
+            </div>
+            <button type="submit" class="submit-btn">Registrar Doação</button>
+        </form>
+        <button onclick="location.href='index.html'" class="navigation-btn">Voltar</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
