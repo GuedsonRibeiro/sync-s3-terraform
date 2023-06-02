@@ -47,10 +47,10 @@ resource "aws_s3_bucket_object" "cadastro-doador" {
   content_type = "text/html"
 }
 
-resource "aws_s3_bucket_object" "cadastro-organizazao" {
-  key = "cadastro-organizazao.html"
+resource "aws_s3_bucket_object" "cadastro-organizacao" {
+  key = "cadastro-organizacao.html"
   bucket = aws_s3_bucket.s3-guedson.id
-  source = "cadastro-organizazao.html"
+  source = "cadastro-organizacao.html"
   content_type = "text/html"
 }
 
