@@ -69,26 +69,31 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 #S3 POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "S3Permissions",
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObject",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketAcl",
-                "s3:CreateBucket",
-                "s3:PutBucketVersioning"
-            ],
-            "Resource": [
-                "arn:aws:s3:::s3-guedson",
-                "arn:aws:s3:::s3-guedson/*"
-            ]
-        }
+resource "aws_s3_bucket_policy" "s3_policy" {
+  bucket = aws_s3_bucket.s3-guedson.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Sid       = "S3Permissions",
+        Effect    = "Allow",
+        Principal = "*",  # this allows any user; be sure to replace it with the right principal
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:PutBucketPolicy",
+          "s3:PutBucketAcl",
+          "s3:CreateBucket",
+          "s3:PutBucketVersioning"
+        ],
+        Resource = [
+          "arn:aws:s3:::s3-guedson",
+          "arn:aws:s3:::s3-guedson/*"
+        ]
+      }
     ]
+  })
 }
 
 
