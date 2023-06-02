@@ -32,19 +32,32 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 }
 
-# ACL S3
-resource "aws_s3_bucket_acl" "acl-pub" {
-  bucket = aws_s3_bucket.s3-guedson.id
-
-  acl = "public-read"
-}
-
 #S3 UPLOAD OBJECT
 resource "aws_s3_bucket_object" "error" {
   key = "error.html"
   bucket = aws_s3_bucket.s3-guedson.id
   source = "error.html"
-  acl = "public-read"
+  content_type = "text/html"
+}
+
+resource "aws_s3_bucket_object" "cadastro-doador" {
+  key = "cadastro-doador.html"
+  bucket = aws_s3_bucket.s3-guedson.id
+  source = "cadastro-doador.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_bucket_object" "cadastro-organizazao" {
+  key = "cadastro-organizazao.html"
+  bucket = aws_s3_bucket.s3-guedson.id
+  source = "cadastro-organizazao.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_bucket_object" "doacoes" {
+  key = "doacoes.html"
+  bucket = aws_s3_bucket.s3-guedson.id
+  source = "doacoes.html"
   content_type = "text/html"
 }
 
@@ -52,26 +65,32 @@ resource "aws_s3_bucket_object" "index" {
   key = "index.html"
   bucket = aws_s3_bucket.s3-guedson.id
   source = "index.html"
-  acl = "public-read"
   content_type = "text/html"
 }
 
 #S3 POLICY
-resource "aws_s3_bucket_policy" "s3-policy-alb" {
-  bucket = aws_s3_bucket.s3-guedson.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect     = "Allow",
-        Principal  = "*",
-        Action    = "s3:GetObject",
-        Resource = "arn:aws:s3:::s3-guedson/*",
-      }
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3Permissions",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:PutBucketPolicy",
+                "s3:PutBucketAcl",
+                "s3:CreateBucket",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": [
+                "arn:aws:s3:::s3-guedson",
+                "arn:aws:s3:::s3-guedson/*"
+            ]
+        }
     ]
-	})
 }
+
 
 # VERSIONING S3 BUCKET
 resource "aws_s3_bucket_versioning" "version" {
