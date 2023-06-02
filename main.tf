@@ -72,12 +72,14 @@ resource "aws_s3_bucket_object" "main" {
   key = "main.js"
   bucket = aws_s3_bucket.s3-guedson.id
   source = "main.js"
+  content_type = "text/js"
 }
 
-resource "aws_s3_bucket_object" "styles.css" {
+resource "aws_s3_bucket_object" "styles_css" {
   key = "styles.css"
   bucket = aws_s3_bucket.s3-guedson.id
   source = "styles.css"
+  content_type = "text/css"
 }
 
 
