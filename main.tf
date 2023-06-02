@@ -68,6 +68,19 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
 }
 
+resource "aws_s3_bucket_object" "main" {
+  key = "main.js"
+  bucket = aws_s3_bucket.s3-guedson.id
+  source = "main.js"
+}
+
+resource "aws_s3_bucket_object" "styles.css" {
+  key = "styles.css"
+  bucket = aws_s3_bucket.s3-guedson.id
+  source = "styles.css"
+}
+
+
 #S3 POLICY
 resource "aws_s3_bucket_policy" "s3_policy" {
   bucket = aws_s3_bucket.s3-guedson.id
