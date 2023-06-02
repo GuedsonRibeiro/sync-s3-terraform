@@ -84,7 +84,6 @@ resource "aws_s3_bucket_policy" "s3_policy" {
           "s3:GetObject",
           "s3:PutBucketPolicy",
           "s3:PutBucketAcl",
-          "s3:CreateBucket",
           "s3:PutBucketVersioning"
         ],
         Resource = [
@@ -95,6 +94,8 @@ resource "aws_s3_bucket_policy" "s3_policy" {
     ]
   })
 }
+
+
 
 
 # VERSIONING S3 BUCKET
