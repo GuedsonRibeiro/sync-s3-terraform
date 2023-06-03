@@ -70,10 +70,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         body: JSON.stringify(organizacao)
       })
         .then(response => response.json())
-        .then(data => consolePerdão, parece que a mensagem foi cortada. Aqui está a parte restante do código:
-
-```javascript
-        .then(response => response.json())
         .then(data => console.log(data))
         .catch((error) => {
           console.error('Error:', error);
