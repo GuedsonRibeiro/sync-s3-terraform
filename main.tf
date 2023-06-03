@@ -15,13 +15,13 @@ provider "aws" {
 }
 
 # BUCKET S3
-resource "aws_s3_bucket" "s3-guedson" {
-  bucket = "s3-guedson"
+resource "aws_s3_bucket" "s3-bucket-guedson" {
+  bucket = "s3-bucket-guedson"
 }
 
 # STATIC SITE
 resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
 
   index_document {
     suffix = "index.html"
@@ -35,49 +35,49 @@ resource "aws_s3_bucket_website_configuration" "website" {
 #S3 UPLOAD OBJECT
 resource "aws_s3_bucket_object" "error" {
   key = "error.html"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "error.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "cadastro-doador" {
   key = "cadastro-doador.html"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "cadastro-doador.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "cadastro-organizacao" {
   key = "cadastro-organizacao.html"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "cadastro-organizacao.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "doacoes" {
   key = "doacoes.html"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "doacoes.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "index" {
   key = "index.html"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "index.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_bucket_object" "main" {
   key = "main.js"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "main.js"
   content_type = "text/js"
 }
 
 resource "aws_s3_bucket_object" "styles_css" {
   key = "styles.css"
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   source = "styles.css"
   content_type = "text/css"
 }
@@ -85,7 +85,7 @@ resource "aws_s3_bucket_object" "styles_css" {
 
 #S3 POLICY
 resource "aws_s3_bucket_policy" "s3_policy" {
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -102,8 +102,8 @@ resource "aws_s3_bucket_policy" "s3_policy" {
           "s3:PutBucketVersioning"
         ],
         Resource = [
-          "arn:aws:s3:::s3-guedson",
-          "arn:aws:s3:::s3-guedson/*"
+          "arn:aws:s3:::s3-bucket-guedson",
+          "arn:aws:s3:::s3-bucket-guedson/*"
         ]
       }
     ]
@@ -115,7 +115,7 @@ resource "aws_s3_bucket_policy" "s3_policy" {
 
 # VERSIONING S3 BUCKET
 resource "aws_s3_bucket_versioning" "version" {
-  bucket = aws_s3_bucket.s3-guedson.id
+  bucket = aws_s3_bucket.s3-bucket-guedson.id
   versioning_configuration {
     status = "Enabled"
   }
