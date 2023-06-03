@@ -9,7 +9,7 @@ document.getElementById('cadastro-doacao').addEventListener('submit', function(e
     data: document.getElementById('data').value
   };
 
-  fetch('http://34.207.217.183/doacoes', {
+  fetch('http://34.207.217.183/api/cadastro-doacao', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ document.getElementById('cadastro-doador').addEventListener('submit', function(e
     telefone: document.getElementById('telefone').value
   };
 
-  fetch('http://34.207.217.183/cadastro-doador', {
+  fetch('http://34.207.217.183/api/cadastro-doador', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ document.getElementById('cadastro-organizacao').addEventListener('submit', funct
     telefone: document.getElementById('telefone').value
   };
 
-  fetch('http://34.207.217.183/cadastro-organizacao', {
+  fetch('http://34.207.217.183/api/cadastro-organizacao', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
