@@ -9,7 +9,7 @@ document.getElementById('cadastro-doacao').addEventListener('submit', function(e
     data: document.getElementById('data').value
   };
 
-  fetch('http://34.207.217.183/cadastro-doacao', {
+  fetch('http://34.207.217.183/doacoes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
